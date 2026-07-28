@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // squadData is available globally from data.js
-    let filteredData = squadData;
+    let squadData = [];
+    let filteredData = [];
     
     const ITEMS_PER_PAGE = 20;
     let currentPage = 1;
@@ -21,9 +21,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageSpanBottom = document.getElementById('currentPageBottom');
     const totalSpanBottom = document.getElementById('totalPagesBottom');
 
-    function init() {
-        renderPage();
-        setupEventListeners();
+    async function init() {
+        try {
+            const response = await fetch('squad_dev_qa.json');
+            if (!response.ok) throw new Error('Network response was not ok');
+            squadData = await response.json();
+            filteredData = squadData;
+            renderPage();
+            setupEventListeners();
+        } catch (error) {
+            cardsContainer.innerHTML = `
+                <div style="text-align: center; padding: 4rem; color: #ef4444;">
+                    <h3>Error loading dataset</h3>
+                    <p>Could not fetch squad_dev_qa.json. Please try again later.</p>
+                </div>
+            `;
+            console.error("Failed to load dataset:", error);
+        }
     }
 
     function setupEventListeners() {
