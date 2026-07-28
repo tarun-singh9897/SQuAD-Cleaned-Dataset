@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQuAD Dataset Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-content">
+                <div class="title-section">
+                    <h1>SQuAD Dataset Explorer</h1>
+                    <p>Easily browse and search through the Stanford Question Answering Dataset</p>
+                </div>
+                <div class="search-section">
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="searchInput" placeholder="Search questions, answers, or context...">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="stats-bar">
+                <span id="resultsCount">Loading dataset...</span>
+                <div class="pagination-controls top-pagination">
+                    <button id="prevBtn" class="btn" disabled>Previous</button>
+                    <span class="page-info">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+                    <button id="nextBtn" class="btn" disabled>Next</button>
+                </div>
+            </div>
+
+            <div class="cards-container" id="cardsContainer">
+                <!-- Cards will be dynamically injected here -->
+                <div class="loader">Loading...</div>
+            </div>
+
+            <div class="pagination-controls bottom-pagination">
+                <button id="prevBtnBottom" class="btn" disabled>Previous</button>
+                <span class="page-info">Page <span id="currentPageBottom">1</span> of <span id="totalPagesBottom">1</span></span>
+                <button id="nextBtnBottom" class="btn" disabled>Next</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Data source injected globally as squadData -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
